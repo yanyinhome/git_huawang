@@ -187,8 +187,15 @@ export default {
       text-align: center;
       font-family: FZ;
       h3{
+        margin-right: 3.5rem;
+        margin-left: 3.5rem;
         margin-bottom: 10px;
+        letter-spacing: 3px;
+        background: url("../assets/img/index_line.png") repeat-x left center;
         span{
+          background: #fff;
+          padding-left: 1rem;
+          padding-right: 1rem;
           font-size: 1.2rem;
           color: #000;
         }

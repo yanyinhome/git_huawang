@@ -1,13 +1,13 @@
 <template>
-  <div>
-    我的订单
-    <BottomNav></BottomNav>
-  </div>
+<div>
+  花市咨询
+  <BottomNav></BottomNav>
+</div>
 </template>
 
 <script>
   export default {
-    name: 'Order'
+    name: 'HuaShiMessage'
   }
 </script>
 

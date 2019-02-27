@@ -1,13 +1,12 @@
 <template>
   <div>
-    我的订单
-    <BottomNav></BottomNav>
+    <ReturnHead head_name="账户设置"></ReturnHead>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Order'
+    name: 'Accounts'
   }
 </script>
 

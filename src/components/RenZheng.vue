@@ -1,13 +1,12 @@
 <template>
   <div>
-    我的订单
-    <BottomNav></BottomNav>
+    <ReturnHead head_name="认证花店"></ReturnHead>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Order'
+    name: 'RenZheng'
   }
 </script>
 

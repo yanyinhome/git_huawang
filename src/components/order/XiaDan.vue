@@ -1,13 +1,13 @@
 <template>
   <div>
-    我的订单
+    我要下单
     <BottomNav></BottomNav>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Order'
+    name: 'XiaDan'
   }
 </script>
 

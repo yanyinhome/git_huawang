@@ -1,16 +1,28 @@
 <template>
   <div>
-    找花店
-    <BottomNav></BottomNav>
+      <div class="head_box">
+        <ReturnHead head_name="找花店"></ReturnHead>
+        <div>我是搜索框</div>
+        <Recommendation></Recommendation>
+      </div>
+
   </div>
 </template>
 
 <script>
+  import  Recommendation from './publicComponents/RecommendDation';
   export default {
-    name: 'FindFlower'
+    name: 'FindFlower',
+    data(){
+      return{
+      }
+    },
+    components:{
+      Recommendation
+    }
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

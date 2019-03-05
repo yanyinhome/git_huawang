@@ -5,27 +5,77 @@
       <img :src="userInfo.src" alt="">
       <div class="account_box">
         <span class="account_number">余额：<span class="number">{{userInfo.account}}</span></span>
-        <mt-button>充值</mt-button>
-        <mt-button>提现</mt-button>
+        <mt-button @click="go('/rechange')">充值</mt-button>
+        <mt-button @click="go('/getcash')">提现</mt-button>
       </div>
     </div>
     <div class="my_order_box">
-      <div @click="go('/order')">
+      <div class="list_box" @click="go('/order')">
         <mt-header title="">
         <span slot="left">
-          <span class="user_base user_order"><i class="fa fa-list-ul"></i>&nbsp;&nbsp;我的订单</span>
+          <span class="user_base user_order">我的订单</span>
         </span>
-        <span slot="right"><i class="fa fa-angle-right"></i></span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
         </mt-header>
       </div>
     </div>
-    <mt-header title="多个按钮">
-      <router-link to="/" slot="left">
-        <mt-button icon="back">返回</mt-button>
-        <mt-button >关闭</mt-button>
-      </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
-    </mt-header>
+    <div class="list_box" @click="go('/xiadan')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_setorder">我要下单</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/renzheng')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_renzheng">认证花店</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/accounts')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_account">账户设置</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/caiwu')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_caiwu">财务管理</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/huashimessage')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_zixun">花市咨询</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/askprice')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_wenjia">匿名问价</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box no_line" @click="go('/aboutus')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_aboutus">关于我们</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="margin"></div>
     <BottomNav></BottomNav>
   </div>
 </template>
@@ -66,7 +116,8 @@ export default {
       .info_user_name{
         font-size: 1.4rem;
         color: #fff;
-        margin-top: 0.37rem;
+        height: 2.35rem;
+        line-height: 2.35rem;
       }
       img{
         position: absolute;
@@ -104,23 +155,56 @@ export default {
         }
       }
     }
+    .list_box{
+      padding: 0 1.5rem;
+      margin: 10px 0;
+    }
     .mint-header{
-      font-size: 1rem;
+      font-size: 0.95rem;
       background-color: #fff;
-      padding: 0 10px 0;
-      color: #000;
+      padding: 0 0 5px;
+      border-bottom: 1px solid rgba(223, 223, 229, 1);
+      .user_base{
+        display: inline-block;
+        box-sizing: border-box;
+        color: rgba(0, 0, 0, 1);
+        padding-left: 2.3rem;
+      }
+      .user_order{
+        background: url("../assets/img/personal_order.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_setorder{
+        background: url("../assets/img/personal_xiadan.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_renzheng{
+        background: url("../assets/img/personal_renzheng.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_account{
+        background: url("../assets/img/personal_account.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_caiwu{
+        background: url("../assets/img/personal_caiwu.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_zixun{
+        background: url("../assets/img/personal_message.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_wenjia{
+        background: url("../assets/img/personal_wenjia.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_aboutus{
+        background: url("../assets/img/personal_aboutus.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .right_icon{
+        color: rgba(51, 51, 51, 1);
+      }
     }
-    .user_base{
-      display: inline-block;
-      box-sizing: border-box;
-      color: rgba(0, 0, 0, 1);
-      padding-left: 0.8rem;
+    .no_line{
+      .mint-header{
+        border-bottom: none;
+      }
     }
-    .user_order{
-
-    }
-    .go{
-
+    .margin{
+      height: 4rem;
     }
   }
 </style>

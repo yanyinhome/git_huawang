@@ -9,9 +9,12 @@ import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './assets/fonts/fontimport.css'
 import BottomNav from './components/publicComponents/BottomNav'
+import ReturnHead from './components/publicComponents/ReturnHead'
 Vue.use(Mint)
 Vue.component('BottomNav',BottomNav)
+Vue.component('ReturnHead',ReturnHead)
 Vue.use(BottomNav)
+Vue.use(ReturnHead)
 Vue.config.productionTip = false
 Vue.prototype.$http = xhr
 /* eslint-disable no-new */

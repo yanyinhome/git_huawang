@@ -1,7 +1,8 @@
 // 请求集中处理
 import axios from 'axios'
+import store from '../store/index'
 let axiosInstance = axios.create({
-  baseURL: 'http://swyj.cadhx.com'
+  baseURL: 'http://houtai.huatuan666.com/'
 })
 // 设置axios携带cookie
 /* axiosInstance.interceptors.request.use(config=>{
@@ -10,6 +11,21 @@ let axiosInstance = axios.create({
 },error=>{
     return Promise.reject(error)
 }) */
+//axios的一些配置，比如发送请求显示loading，请求回来loading消失之类的
+axios.interceptors.request.use(function(config) { //配置发送请求的信息
+  store.dispatch('buttonFalse');
+  /* console.log("config",config); */
+  return config;
+}, function(error) {
+  return Promise.reject(error);
+});
+
+axios.interceptors.response.use(function(response) { //配置请求回来的信息
+  store.dispatch('buttonTrue');
+  return response;
+}, function(error) {
+  return Promise.reject(error);
+});
 const xhr = ({method = 'get', headers, ...options}) => {
 // 前提是header不存在,配置header
   if (!headers) {

@@ -1,38 +1,43 @@
 <template>
   <div class="flow_shop_box">
-      <div class="shop_item" v-for="(item,index) in ShopArry" :key="index">
+      <div class="shop_item" v-for="(item,index) in ShopArry" :key="index" @click="go('/flowershopdetail',item.id)">
         <div class="img_box">
-          <img :src="item.src" alt="">
+          <img :src="item.fl_logo" alt="">
         </div>
         <div class="message_box">
-          <span class="orders_info"><span class="num_color">{{item.TotalOrders}}</span>&nbsp;总接单</span>
-          <p class="head">{{item.name}}</p>
-          <p class="address">地址：{{item.address}}</p>
-          <span class="phone_box">{{item.phone}}</span>
-          <span class="qq_box">{{item.qq}}</span>
+          <span class="orders_info"><span class="num_color">{{item.fl_order_num}}</span>&nbsp;总接单</span>
+          <p class="head">{{item.fl_name}}</p>
+          <p class="address">地址：{{item.dizhi}}</p>
+          <span class="phone_box">{{item.fl_phone}}</span>
+          <span class="qq_box">{{item.fl_qq}}</span>
         </div>
-      </div>
-      <div>
-        <mt-button>查看更多</mt-button>
       </div>
   </div>
 </template>
 
 <script>
-
+  import {mapState} from 'vuex'
   export default {
     name: 'Recommendation',
-    data(){
-      return{
-        ShopArry:[
-          {name:"花店名称",address:"河南省金水区",phone:"13345699999",qq:'99999999999',TotalOrders:9562,src:require('../../assets/img/shop_card.png')},
-          {name:"花店名称",address:"河南省金水区",phone:"13345699999",qq:'99999999999',TotalOrders:9562,src:require('../../assets/img/shop_card.png')},
-          {name:"花店名称",address:"河南省金水区",phone:"13345699999",qq:'99999999999',TotalOrders:9562,src:require('../../assets/img/shop_card.png')},
-          {name:"花店名称",address:"河南省金水区",phone:"13345699999",qq:'99999999999',TotalOrders:9562,src:require('../../assets/img/shop_card.png')},
-          {name:"花店名称",address:"河南省金水区",phone:"13345699999",qq:'99999999999',TotalOrders:9562,src:require('../../assets/img/shop_card.png')},
-          {name:"花店名称",address:"河南省金水区",phone:"13345699999",qq:'99999999999',TotalOrders:9562,src:require('../../assets/img/shop_card.png')},
-          {name:"花店名称",address:"河南省金水区",phone:"13345699999",qq:'99999999999',TotalOrders:9562,src:require('../../assets/img/shop_card.png')}
-        ]
+    props:{
+      ShopArry:{
+        type:Array,
+        default:function () {
+          return [
+          ]
+        }
+      }
+    },
+    computed:{
+      ...mapState(['userInfo'])
+    },
+    methods:{
+      go(path,id){
+        if(this.userInfo){
+          this.$router.push({path:path,query:{id:id}})
+        }else {
+          this.$toast('您还没有登录，请先登录')
+        }
       }
     }
   }
@@ -47,12 +52,17 @@
       height: 6rem;
       overflow: hidden;
       border-bottom: 1px solid #4D242D24;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 1px 1px 5px rgba(36, 45, 36, 0.3);
       .img_box{
         padding-top: 1rem;
+        padding-left: 10px;
+        box-sizing: border-box;
+        text-align: left;
         height: 100%;
         float: left;
         width:20%;
-        padding-right: 2%;
         overflow: hidden;
         img{
           border-radius: 50%;
@@ -63,8 +73,8 @@
         }
       }
       .message_box{
-        float: left;
-        width: 78%;
+        float: right;
+        width: calc(80% - 5px);
         position: relative;
         text-align: left;
         .orders_info{
@@ -72,7 +82,7 @@
           color: rgba(36, 45, 36, 0.5);;
           position: absolute;
           top:5px;
-          right: 1.3rem;
+          right: 10px;
           .num_color{
             color: #FA6734;
           }
@@ -103,14 +113,6 @@
           background: url("../../assets/img/shop-qq.png") no-repeat left/0.8rem 0.8rem;
         }
       }
-    }
-    .mint-button{
-      border:1px solid rgba(53, 66, 54, 1);
-      height: 1.3rem;
-      font-size: 0.7rem;
-      color: rgba(53, 66, 54, 1);
-      margin-top: 1rem;
-      margin-bottom: 1.5rem;
     }
   }
 </style>

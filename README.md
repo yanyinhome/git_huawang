@@ -1,9 +1,8 @@
 # app
-
 > A Vue.js project
 
 ## Build Setup
-
+使用前直接npm init 即可
 ``` bash
 # install dependencies
 npm install

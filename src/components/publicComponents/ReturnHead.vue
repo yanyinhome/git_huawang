@@ -22,15 +22,16 @@
   h3{
     font-size: 1.2rem;
     margin-top: 0rem;
-    padding:10px 0;
+    padding:31px 0 10px;
     color: #000;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(223, 223, 229, 1);
+    position: relative;
     .return{
       background: url("../../assets/img/head_return.png") no-repeat right/auto 80%;
       display: block;
-      float: left;
+      position: absolute;
       width: 1.5rem;
-      padding-left: 20px;
+      left: 15px;
     }
   }
 </style>

@@ -1,11 +1,9 @@
 <template>
   <div class="hello">
-    <div class="font">花团帮</div>
+    <div class="font">花团</div>
     <div class="swiper_box">
       <mt-swipe :show-indicators="true" :auto='5000'>
-        <mt-swipe-item><img src="../assets/img/banner.png" alt=""></mt-swipe-item>
-        <mt-swipe-item><img src="../assets/img/banner.png" alt=""></mt-swipe-item>
-        <mt-swipe-item><img src="../assets/img/banner.png" alt=""></mt-swipe-item>
+        <mt-swipe-item v-for="(item,index) in bannerArray" :key="index"><img :src="item.imgurl" alt=""></mt-swipe-item>
       </mt-swipe>
     </div>
     <!--中间的提示信息-->
@@ -25,7 +23,11 @@
     <!--中部导航end-->
     <!--平台公告-->
     <div class="public_message">
-      <p>{{PublicMessage}}</p>
+        <mt-swipe :auto='1000' :speed='10000' :show-indicators="false" :prevent="true">
+          <mt-swipe-item v-for="(item,index) in PublicMessageArray" :key="index">
+            <div v-html="item.content"></div>
+          </mt-swipe-item>
+        </mt-swipe>
     </div>
     <!--平台公告end-->
     <!--推荐花店-->
@@ -34,7 +36,10 @@
         <h3><span>推荐花店</span></h3>
         <p>Recommendation</p>
       </div>
-      <Recommendation></Recommendation>
+      <Recommendation :ShopArry="flowerShopArray"></Recommendation>
+      <div style="border-bottom: 10px solid rgba(242, 243, 245, 1)">
+        <mt-button class="more" @click="go({path:'/findflower'})">查看更多</mt-button>
+      </div>
     </div>
     <!--推荐花店end-->
     <div class="transaction_order_box">
@@ -44,14 +49,24 @@
       </div>
       <div class="order_box">
         <div class="order_item" v-for="(item,index) in SuccessOrders" :key="index">
-          <span class="order_address">{{item.address}}</span>
-          <span class="order_number">￥{{item.number}}</span>
-          <span class="order_user_name">{{item.username}}</span>
-          <span class="order_time">{{item.time}}</span>
+          <span class="order_address">{{item.dizhi}}</span>
+          <span class="order_number">￥{{item.or_flower_total}}</span>
+          <span class="order_user_name">{{item.or_shou_name}}</span>
+          <span class="order_time">{{item.create_time}}</span>
         </div>
+        <div class="nomore" v-if="SuccessOrders.length<4&&SuccessOrders.length>0">没有更多订单了！</div>
+        <div class="nomore" v-if="SuccessOrders.length==0">暂时没有订单！</div>
       </div>
     </div>
     <BottomNav></BottomNav>
+    <div id="bdtts_div_id">
+      <audio id="tts_autio_id" autoplay="autoplay">
+        <source id="tts_source_id"
+                src="http://tts.baidu.com/text2audio?lan=zh&amp;ie=UTF-8&amp;spd=5&amp;per=0&amp;text=''"
+                type="audio/mpeg">
+        <embed id="tts_embed_id" height="0" width="0" src="">
+      </audio>
+    </div>
   </div>
 </template>
 
@@ -60,10 +75,10 @@ import {mapState,mapActions} from  'vuex';
 import  Recommendation from './publicComponents/RecommendDation';
 export default {
   name: 'Home',
-  components:{
-  },
   data () {
     return {
+      bannerArray:[],
+      flowerShopArray:[],
       infoArry:
         [
         {message:'花匠用心严选',src:require('../assets/img/index_info_1.png')},
@@ -71,46 +86,95 @@ export default {
         {message:'优质售后服务',src:require('../assets/img/index_info_3.png')},
         ],
       CenterNavArry:[
-        {message:'抢订单',path:"/order",src:require('../assets/img/index_getorder.png')},
-        {message:'下订单',path:"/order",src:require('../assets/img/index_serorder.png')},
+        {message:'抢订单',path:"/getorders",src:require('../assets/img/index_getorder.png')},
+        {message:'下订单',path:"/addorders",src:require('../assets/img/index_serorder.png')},
         {message:'找花店',path:"/findflower",src:require('../assets/img/index_searchorder.png')},
         {message:'关于我们',path:"/aboutus",src:require('../assets/img/index_aboutus.png')}
       ],
       SuccessOrders:[
-        {username:"李某某",address:'河南省郑州市中原区棉纺西路等等等等等',number:280,time:'2019-01-30 13:25'},
-        {username:"李某某",address:'河南省郑州市中原区棉纺西路等等等等等',number:280,time:'2019-01-30 13:25'},
-        {username:"李某某",address:'河南省郑州市中原区棉纺西路等等等等等',number:280,time:'2019-01-30 13:25'},
-        {username:"李某某",address:'河南省郑州市中原区棉纺西路等等等等等',number:280,time:'2019-01-30 13:25'}
+        // {or_shou_name:"李某某",dizhi:'河南省郑州市中原区棉纺西路等等等等等',or_flower_total:280,create_time:'2019-01-30 13:25'},
       ],
-      PublicMessage:'平台将于2019年1月30日下午13:00进行维护，请各位用户注意'
+      PublicMessageArray:[],
     }
   },
   components:{
     Recommendation
   },
   computed:{
-
+  ...mapState(['userInfo','timer'])
   },
   methods:{
-    ...mapActions(['setActiveIndex']),
+    ...mapActions(['setActiveIndex','setTimer','clearTimer']),
+    //  新订单提醒
+    orderNotice:function () {
+      if(this.timer){this.clearTimer()}
+      let token=this.userInfo.token
+      const _this=this
+      this.setTimer(setInterval(
+        function () {
+          if(token){
+            _this.$http({method:'post',url:"/api/user/get_new_order",data:{token:token}})
+              .then(res=>{
+                console.log(1)
+                console.log(res)
+                if(res.data.code==200){
+                  let content=res.data.msg
+                  _this.$toast(content)
+                  _this.playSound(content)
+                }
+              })
+          }
+        },10000
+      ))
+    },
+    //  语音播报
+    playSound:function (ttsText) {
+      var ttsDiv = document.getElementById('bdtts_div_id');
+      var ttsAudio = document.getElementById('tts_autio_id');
+      // 文字转语音
+      ttsDiv.removeChild(ttsAudio);
+      var au1 = '<audio id="tts_autio_id" autoplay="autoplay">';
+      var sss = '<source id="tts_source_id" src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=0&spd=5&text=' + ttsText + '" type="audio/mpeg">';
+      var eee = '<embed id="tts_embed_id" height="0" width="0" src="">';
+      var au2 = '</audio>';
+      ttsDiv.innerHTML = au1 + sss + eee + au2;
+      ttsAudio = document.getElementById('tts_autio_id');
+      ttsAudio.play();
+    },
     go(obj={path:'/',index: 0}){
       this.$router.push({path:obj.path})
       switch (obj.index) {
-        case 0: case 1:
-          this.setActiveIndex(1);
-          break
-        case  2:
-          this.setActiveIndex(0);
-          break
-        case  3:
+        case 0:
           this.setActiveIndex(2);
+          break
         default :
           break
       }
     }
   },
+  created(){
+    this.orderNotice()
+    this.$http({method:"post",url:"/api/index/index",data:{token:this.userInfo.token,type:'1'}})
+      .then(
+        res=>{
+          if(res.data.code==200){
+            this.bannerArray=res.data.data.banner;
+            this.flowerShopArray=res.data.data.list
+            if(res.data.data.order){
+              this.SuccessOrders=res.data.data.order
+            }
+            this.flowerShopArray=res.data.data.flower;
+            this.PublicMessageArray=res.data.data.notice;
+          }else {
+            this.$toast("2")
+          }
+        }
+      )
+  },
   mounted () {
-
+    if(this.$route.query.message){
+      this.playSound(this.$route.query.message)
+    }
   }
 }
 </script>
@@ -132,7 +196,7 @@ export default {
     .font{
       font-family: FZ;
       color: #FA6734;
-      line-height: 1.5em;
+      padding: 31px 0 10px;
       font-size: 1.3rem;
     }
     .swiper_info{
@@ -176,20 +240,21 @@ export default {
       }
     }
     .public_message{
-      p{
-        overflow: hidden;
-        height: 1.2rem;
-        font-size: 1rem;
-        margin: 0;
-      }
+      border-bottom: 10px solid rgba(242, 243, 245, 1);
+      border-top: 10px solid rgba(242, 243, 245, 1);
+      padding: 10px 1rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      color: #000000;
     }
     .title_box{
       text-align: center;
       font-family: FZ;
       h3{
+        margin-top: 1.5rem;
         margin-right: 3.5rem;
         margin-left: 3.5rem;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         letter-spacing: 3px;
         background: url("../assets/img/index_line.png") repeat-x left center;
         span{
@@ -205,6 +270,7 @@ export default {
         color: #99782E;
         margin: 0;
         letter-spacing: 5px;
+        margin-bottom: 15px;
       }
     }
     .transaction_order_box{
@@ -212,9 +278,9 @@ export default {
       .order_box{
         margin-top: 25px;
         padding: 2rem 1.5rem;
-        height: 16rem;
         box-sizing: border-box;
         background: url("../assets/img/index_order_box.png") no-repeat center/100% 100%;
+        .nomore{padding-top: 1rem}
         .order_item{
           border-bottom: 1px dashed rgba(151, 151, 151, 1);
           padding: 5px 0;
@@ -247,6 +313,17 @@ export default {
           border-bottom: 0;
         }
       }
+    }
+    .more{
+      border:1px solid rgba(53, 66, 54, 1);
+      height: 1.6rem;
+      line-height: 1.6rem;
+      box-sizing: border-box;
+      font-size: 0.7rem;
+      padding: 0 1.2rem;
+      color: rgba(53, 66, 54, 1);
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 </style>

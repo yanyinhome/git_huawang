@@ -251,10 +251,16 @@ export default {
       text-align: center;
       font-family: FZ;
       h3{
+<<<<<<< HEAD
         margin-top: 1.5rem;
         margin-right: 3.5rem;
         margin-left: 3.5rem;
         margin-bottom: 15px;
+=======
+        margin-right: 3.5rem;
+        margin-left: 3.5rem;
+        margin-bottom: 10px;
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
         letter-spacing: 3px;
         background: url("../assets/img/index_line.png") repeat-x left center;
         span{

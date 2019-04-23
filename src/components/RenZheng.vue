@@ -1,6 +1,7 @@
 <template>
   <div>
     <ReturnHead head_name="认证花店"></ReturnHead>
+<<<<<<< HEAD
     <div v-if="state==1">
       <div class="baseMessage1">
         <h3>花店基本信息</h3>
@@ -277,10 +278,13 @@
         <mt-button :class="sub" @click="gostep()">重新认证</mt-button>
       </div>
     </div>
+=======
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
   import axios from "axios"
   import {mapState,mapActions} from 'vuex'
   export default {
@@ -965,4 +969,13 @@
       }
     }
   }
+=======
+  export default {
+    name: 'RenZheng'
+  }
+</script>
+
+<style scoped>
+
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
 </style>

@@ -26,6 +26,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
   import {mapState} from  "vuex"
   export default {
     name: 'CaiWu',
@@ -159,4 +160,13 @@
     }
   }
 }
+=======
+  export default {
+    name: 'CaiWu'
+  }
+</script>
+
+<style scoped>
+
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
 </style>

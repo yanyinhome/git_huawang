@@ -271,18 +271,64 @@ export default new Router({
       }
     },
     {
+      path: '/caiwu',
+      component: CaiWu,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/rechange',
+      component: ReChange,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/getcash',
+      component: GetCash,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/renzheng',
+      component: RenZheng,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/accounts',
+      component: Accounts,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/xiadan',
+      component: XiaDan,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/aboutus',
       component: AboutUs,
     },
     {
+<<<<<<< HEAD
       path: '/black',
       component: black,
     },
     {
+=======
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       path: '/askprice',
       component: AskPrice,
     },
     {
+<<<<<<< HEAD
       path: '/askpricedetail',
       component: AskPriceDetail,
     },
@@ -291,6 +337,8 @@ export default new Router({
       component: AskPriceAddQuesion,
     },
     {
+=======
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       path: '/huashimessage',
       component: HuaShiMessage,
     },

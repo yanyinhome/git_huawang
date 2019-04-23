@@ -10,18 +10,28 @@
         <div class="load_box"><p @click="run('/login')"><span>登录</span>/<span>注册</span></p></div>
       </template>
       <div class="account_box">
+<<<<<<< HEAD
         <span class="account_number">余额：<span class="number">{{userInfo.money?userInfo.money:'0.00'}}</span></span>
+=======
+        <span class="account_number">余额：<span class="number">{{userInfo.account}}</span></span>
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
         <mt-button @click="go('/rechange')">充值</mt-button>
         <mt-button @click="go('/getcash')">提现</mt-button>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="my_order_box" :class="{showmargin:showState}">
       <div class="list_box" @click="showList()">
         <div @click="goOrder()" >
+=======
+    <div class="my_order_box">
+      <div class="list_box" @click="go('/order')">
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
         <mt-header title="">
         <span slot="left">
           <span class="user_base user_order">我的订单</span>
         </span>
+<<<<<<< HEAD
             <span class="right_icon" slot="right"><i class="lnr lnr-chevron-right"></i></span>
           </mt-header>
         </div>
@@ -97,6 +107,68 @@
         </mt-header>
       </div>
     </div>
+=======
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+        </mt-header>
+      </div>
+    </div>
+    <div class="list_box" @click="go('/xiadan')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_setorder">我要下单</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/renzheng')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_renzheng">认证花店</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/accounts')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_account">账户设置</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/caiwu')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_caiwu">财务管理</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/huashimessage')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_zixun">花市咨询</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box" @click="go('/askprice')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_wenjia">匿名问价</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+    <div class="list_box no_line" @click="go('/aboutus')">
+      <mt-header title="">
+        <span slot="left">
+          <span class="user_base user_aboutus">关于我们</span>
+        </span>
+        <span class="right_icon" slot="right"><i class="fa fa-angle-right fa-lg"></i></span>
+      </mt-header>
+    </div>
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     <div class="margin"></div>
     <BottomNav></BottomNav>
   </div>
@@ -239,6 +311,7 @@ export default {
         color: #fff;
         height: 2.35rem;
         line-height: 2.35rem;
+<<<<<<< HEAD
       }
       .info_p{
         color: rgba(255, 255, 255, 1);
@@ -257,6 +330,8 @@ export default {
           text-align: center;
           font-size: 0.9rem;
         }
+=======
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       }
       img{
         position: absolute;
@@ -294,6 +369,7 @@ export default {
         }
       }
     }
+<<<<<<< HEAD
     .unload{
       padding: 2.8rem 0.8rem 0rem;
     }
@@ -318,11 +394,17 @@ export default {
           border-right: 1px solid rgba(223, 223, 229, 1);
         }
       }
+=======
+    .list_box{
+      padding: 0 1.5rem;
+      margin: 10px 0;
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     }
     .mint-header{
       font-size: 0.95rem;
       background-color: #fff;
       padding: 0 0 5px;
+<<<<<<< HEAD
       border-bottom: 1px solid rgba(223, 223, 229, 1);
       .mint-header-button{
         span{
@@ -330,6 +412,10 @@ export default {
           line-height: 1.3rem;
         }
       }
+=======
+      color: rgba(255, 255, 255, 1);
+      border-bottom: 1px solid rgba(223, 223, 229, 1);
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       .user_base{
         display: inline-block;
         box-sizing: border-box;
@@ -337,6 +423,7 @@ export default {
         padding-left: 2.3rem;
       }
       .user_order{
+<<<<<<< HEAD
         background: url("../assets/img/personal_order.png") no-repeat 3px/1.3rem 1.3rem;
       }
       .user_setorder{
@@ -356,6 +443,24 @@ export default {
       }
       .user_zixun{
         background: url("../assets/img/personal_message.png") no-repeat 3px/1.3rem 1.3rem;
+=======
+        background: url("../assets/img/personal_order.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_setorder{
+        background: url("../assets/img/personal_xiadan.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_renzheng{
+        background: url("../assets/img/personal_renzheng.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_account{
+        background: url("../assets/img/personal_account.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_caiwu{
+        background: url("../assets/img/personal_caiwu.png") no-repeat 5px/1.3rem 1.3rem;
+      }
+      .user_zixun{
+        background: url("../assets/img/personal_message.png") no-repeat 5px/1.3rem 1.3rem;
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       }
       .user_wenjia{
         background: url("../assets/img/personal_wenjia.png") no-repeat 5px/1.3rem 1.3rem;
@@ -373,7 +478,11 @@ export default {
       }
     }
     .margin{
+<<<<<<< HEAD
       height: 8rem;
+=======
+      height: 4rem;
+>>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     }
   }
 </style>

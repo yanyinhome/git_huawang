@@ -7,6 +7,7 @@
     <div class="info_box">
       <h3>{{flowerShopInfo.fl_name}} <span class="total_orders"><span class="num">{{flowerShopInfo.fl_order_num}}</span>总接单</span></h3>
       <p>地址：{{flowerShopInfo.dizhi}}</p>
+      <p>近三个月<span style="color:#fa6734">{{flowerShopInfo.ordercount}}</span>单</p>
     </div>
     <div class="contact">
       <div class="left">
@@ -153,6 +154,7 @@
       }
       this.$http({method:"post",url:"/api/flower/serch_info",data:{token:this.userInfo.token,id:this.$route.query.id}})
         .then(res=>{
+          console.log(res)
           if(res.data.code==200){
             this.flowerShopInfo=res.data.data[0]
           }

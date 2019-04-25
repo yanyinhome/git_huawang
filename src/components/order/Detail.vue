@@ -42,6 +42,16 @@
       </div>
       <div class="item_box">
         <div class="left">
+          支付时间:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.pay_time}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
           收花信息:
         </div>
         <div class="right">
@@ -50,6 +60,32 @@
           </p>
           <p>
             {{orderdetail.or_shou_phone}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
+          下单信息:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.xiadan_name}}
+          </p>
+          <p>
+            {{orderdetail.xiadan_phone}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
+          订花信息:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.or_buy_name}}
+          </p>
+          <p>
+            {{orderdetail.or_buy_phone}}
           </p>
         </div>
       </div>
@@ -77,12 +113,22 @@
         </div>
       </div>
       <div class="item_box">
+      <div class="left">
+        订单备注:
+      </div>
+      <div class="right">
+        <p>
+          {{orderdetail.or_flower_content}}
+        </p>
+      </div>
+    </div>
+      <div class="item_box">
         <div class="left">
-          订单备注:
+          贺词:
         </div>
         <div class="right">
           <p>
-            {{orderdetail.or_flower_content}}
+            {{orderdetail.card}}
           </p>
         </div>
       </div>
@@ -137,6 +183,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -145,6 +201,32 @@
             </p>
             <p>
               {{orderdetail.or_shou_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            下单信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.xiadan_name}}
+            </p>
+            <p>
+              {{orderdetail.xiadan_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            订花信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.or_buy_name}}
+            </p>
+            <p>
+              {{orderdetail.or_buy_phone}}
             </p>
           </div>
         </div>
@@ -181,6 +263,16 @@
             </p>
           </div>
         </div>
+        <div class="item_box">
+          <div class="left">
+            贺词:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.card}}
+            </p>
+          </div>
+        </div>
         <div class="price">￥{{orderdetail.or_flower_total}}</div>
         <div class="bg_icon">
           待配送
@@ -189,7 +281,7 @@
     </div>
     <div class="btn_box peisong">
       <mt-button class="receive" @click="beginSend()">开始配送</mt-button>
-      <mt-button class="cancle" @click="quxiao(orderdetail.id)">取消订单</mt-button>
+      <mt-button class="cancle" style="display: none" @click="quxiao(orderdetail.id)">取消订单</mt-button>
     </div>
   </template>
 <template v-if="order.step==1">
@@ -232,6 +324,16 @@
       </div>
       <div class="item_box">
         <div class="left">
+          支付时间:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.pay_time}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
           收花信息:
         </div>
         <div class="right">
@@ -240,6 +342,32 @@
           </p>
           <p>
             {{orderdetail.or_shou_phone}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
+          下单信息:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.xiadan_name}}
+          </p>
+          <p>
+            {{orderdetail.xiadan_phone}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
+          订花信息:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.or_buy_name}}
+          </p>
+          <p>
+            {{orderdetail.or_buy_phone}}
           </p>
         </div>
       </div>
@@ -276,9 +404,19 @@
           </p>
         </div>
       </div>
+      <div class="item_box">
+        <div class="left">
+          贺词:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.card}}
+          </p>
+        </div>
+      </div>
       <div class="btnbox">
-        <div class="btn left"><span><a :href="'tel:'+orderdetail.or_shou_phone">联系送花人</a></span></div>
-        <div class="btn"><span><a :href="'tel:'+orderdetail.or_buy_phone">联系收花人</a></span></div>
+        <div class="btn left"><span><a :href="'tel:'+orderdetail.xiadan_phone">联系送花人</a></span></div>
+        <div class="btn"><span><a :href="'tel:'+orderdetail.or_shou_phone">联系收花人</a></span></div>
       </div>
       <div class="price">￥{{orderdetail.or_flower_total}}</div>
       <div class="bg_icon sending">
@@ -313,7 +451,7 @@
   </div>
   <div class="btn_box complate">
     <mt-button class="receive" @click="complete">完成配送</mt-button>
-    <mt-button class="cancle" @click="quxiao(orderdetail.id)">取消订单</mt-button>
+    <mt-button class="cancle" style="display: none" @click="quxiao(orderdetail.id)">取消订单</mt-button>
   </div>
 </template>
 <template v-if="order.step==2">
@@ -356,6 +494,16 @@
       </div>
       <div class="item_box">
         <div class="left">
+          支付时间:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.pay_time}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
           收花信息:
         </div>
         <div class="right">
@@ -364,6 +512,32 @@
           </p>
           <p>
             {{orderdetail.or_shou_phone}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
+          下单信息:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.xiadan_name}}
+          </p>
+          <p>
+            {{orderdetail.xiadan_phone}}
+          </p>
+        </div>
+      </div>
+      <div class="item_box">
+        <div class="left">
+          订花信息:
+        </div>
+        <div class="right">
+          <p>
+            {{orderdetail.or_buy_name}}
+          </p>
+          <p>
+            {{orderdetail.or_buy_phone}}
           </p>
         </div>
       </div>
@@ -474,6 +648,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -482,6 +666,32 @@
             </p>
             <p>
               {{orderdetail.or_shou_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            下单信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.xiadan_name}}
+            </p>
+            <p>
+              {{orderdetail.xiadan_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            订花信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.or_buy_name}}
+            </p>
+            <p>
+              {{orderdetail.or_buy_phone}}
             </p>
           </div>
         </div>
@@ -506,6 +716,35 @@
             <p class="send_time">
               {{orderdetail.or_delivery_time}}
             </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            配送完成:
+          </div>
+          <div class="right">
+            <p class="send_time" style="color: #0d7fe8">
+              {{orderdetail.songda_time}}
+            </p>
+          </div>
+        </div>
+        <div class="receipt" v-if="orderdetail.yj_time">预计在<span style="color: #0d7fe8">{{orderdetail.yj_time}}</span>自动确认收货</div>
+        <div class="evidemce">
+          <p class="title_name">
+            送达凭证：
+          </p>
+          <div class="imgs_box">
+            <div class="img_show_box" v-if="orderdetail.songda_images.length">
+              <div class="item_fun" v-for="(item,index) in orderdetail.songda_images" :key="index">
+                <div class="item">
+                  <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                  <img  :src="item" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="img_show_box" v-if="!orderdetail.songda_images.length">
+              <p class="info">未有图片上传！</p>
+            </div>
           </div>
         </div>
         <div class="price">￥{{orderdetail.or_flower_total}}</div>
@@ -556,6 +795,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -564,6 +813,32 @@
             </p>
             <p>
               {{orderdetail.or_shou_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            下单信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.xiadan_name}}
+            </p>
+            <p>
+              {{orderdetail.xiadan_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            订花信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.or_buy_name}}
+            </p>
+            <p>
+              {{orderdetail.or_buy_phone}}
             </p>
           </div>
         </div>
@@ -637,6 +912,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -645,6 +930,32 @@
             </p>
             <p>
               {{orderdetail.or_shou_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            下单信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.xiadan_name}}
+            </p>
+            <p>
+              {{orderdetail.xiadan_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            订花信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.or_buy_name}}
+            </p>
+            <p>
+              {{orderdetail.or_buy_phone}}
             </p>
           </div>
         </div>
@@ -718,6 +1029,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -726,6 +1047,32 @@
             </p>
             <p>
               {{orderdetail.or_shou_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            下单信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.xiadan_name}}
+            </p>
+            <p>
+              {{orderdetail.xiadan_phone}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            订花信息:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.or_buy_name}}
+            </p>
+            <p>
+              {{orderdetail.or_buy_phone}}
             </p>
           </div>
         </div>
@@ -801,6 +1148,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -842,6 +1199,16 @@
           <div class="right">
             <p>
               {{orderdetail.or_flower_content}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            贺词:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.card}}
             </p>
           </div>
         </div>
@@ -916,6 +1283,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -957,6 +1334,16 @@
           <div class="right">
             <p>
               {{orderdetail.or_flower_content}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            贺词:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.card}}
             </p>
           </div>
         </div>
@@ -1111,6 +1498,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -1143,6 +1540,10 @@
             <p >
               {{orderdata.flows.fl_name}}
             </p>
+            <p style="padding-top: 0.5rem">
+              <a :href="'tel:'+orderdata.flows.fl_tel" class="phone">{{orderdata.flows.fl_tel}}</a>
+              <a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderdata.flows.fl_qq+'&site=qq&menu=yes'" class="qq">{{orderdata.flows.fl_qq}}</a>
+            </p>
           </div>
         </div>
         <div class="item_box">
@@ -1165,7 +1566,35 @@
             </p>
           </div>
         </div>
+        <div class="item_box">
+          <div class="left">
+            贺词:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.card}}
+            </p>
+          </div>
+        </div>
         <div class="receipt" v-if="yuji">预计在<span style="color: #0d7fe8">{{orderdetail.yj_time}}</span>自动确认收货</div>
+        <div class="evidemce" v-if="orderdetail.status!==8">
+          <p class="title_name">
+            送达凭证：
+          </p>
+          <div class="imgs_box">
+            <div class="img_show_box" v-if="orderdetail.songda_images.length">
+              <div class="item_fun" v-for="(item,index) in orderdetail.songda_images" :key="index">
+                <div class="item">
+                  <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                  <img  :src="item" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="img_show_box" v-if="!orderdetail.songda_images.length">
+              <p class="info">未有图片上传！</p>
+            </div>
+          </div>
+        </div>
         <div class="price">￥{{orderdetail.or_flower_total}}</div>
         <div class="bg_icon sending">
           配送中
@@ -1217,6 +1646,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -1259,6 +1698,10 @@
             <p >
               {{orderdata.flows.fl_name}}
             </p>
+            <p style="padding-top: 0.5rem">
+              <a :href="'tel:'+orderdata.flows.fl_tel" class="phone">{{orderdata.flows.fl_tel}}</a>
+              <a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderdata.flows.fl_qq+'&site=qq&menu=yes'" class="qq">{{orderdata.flows.fl_qq}}</a>
+            </p>
           </div>
         </div>
         <div class="item_box">
@@ -1270,6 +1713,20 @@
               {{orderdetail.or_flower_content}}
             </p>
           </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            贺词:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.card}}
+            </p>
+          </div>
+        </div>
+        <div class="btn_box">
+          <!--<mt-button class="receive" @click="querenshouhuo(id)">确认收货</mt-button>-->
+          <mt-button class="cancle" @click="asktuikuan(id)">申请退款</mt-button>
         </div>
         <div class="price">￥{{orderdetail.or_flower_total}}</div>
         <div class="bg_icon">
@@ -1321,6 +1778,16 @@
         </div>
         <div class="item_box">
           <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
             收花信息:
           </div>
           <div class="right">
@@ -1353,16 +1820,48 @@
             <p>
               {{orderdata.flows.fl_name}}
             </p>
+            <p style="padding-top: 0.5rem">
+              <a :href="'tel:'+orderdata.flows.fl_tel" class="phone">{{orderdata.flows.fl_tel}}</a>
+              <a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderdata.flows.fl_qq+'&site=qq&menu=yes'" class="qq">{{orderdata.flows.fl_qq}}</a>
+            </p>
           </div>
         </div>
         <div class="item_box">
           <div class="left">
-            派送时间:
+            配送完成:
           </div>
           <div class="right">
-            <p class="send_time">
-              {{orderdetail.or_delivery_time}}
+            <p class="send_time" style="color: #0d7fe8">
+              {{orderdetail.songda_time}}
             </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            贺词:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.card}}
+            </p>
+          </div>
+        </div>
+        <div class="evidemce">
+          <p class="title_name">
+            送达凭证：
+          </p>
+          <div class="imgs_box">
+            <div class="img_show_box" v-if="orderdetail.songda_images.length">
+              <div class="item_fun" v-for="(item,index) in orderdetail.songda_images" :key="index">
+                <div class="item">
+                  <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                  <img  :src="item" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="img_show_box" v-if="!orderdetail.songda_images.length">
+              <p class="info">未有图片上传！</p>
+            </div>
           </div>
         </div>
         <div class="price">￥{{orderdetail.or_flower_total}}</div>
@@ -1408,6 +1907,16 @@
           <div class="right">
             <p>
               {{orderdetail.create_time}}
+            </p>
+          </div>
+        </div>
+        <div class="item_box">
+          <div class="left">
+            支付时间:
+          </div>
+          <div class="right">
+            <p>
+              {{orderdetail.pay_time}}
             </p>
           </div>
         </div>
@@ -1514,6 +2023,7 @@
       return{
         yuji:false,
         id:"",
+        sonda_imgArray:[],
         //图片框状态
         picbox_state:false,
         picbox_img:{
@@ -1841,12 +2351,12 @@
                     }
                     break
                   case 10:
+                    this.yuji=true;
                     if(this.order.type==1){
                       this.order.step=2.5
                     }
                     if(this.order.type==2){
                       this.order.step=2;
-                      this.yuji=true;
                     }
                     break
                   case 11:
@@ -2114,6 +2624,22 @@
         .send_time{
           color: rgba(0, 0, 0, 1);
         }
+        p{
+          a{
+            color: #000000;
+            display: inline-block;
+            padding-left: 1.5rem;
+          }
+          a:first-child{
+            margin-right: 1rem;
+          }
+          .phone{
+            background: url("../../assets/img/shop-phone.png") no-repeat left center/1rem 1rem;
+          }
+          .qq{
+            background: url("../../assets/img/shop-qq.png") no-repeat left center/1rem 1rem;
+          }
+        }
       }
     }
     .btnbox{
@@ -2192,10 +2718,10 @@
         }
         .item_fun{
           float: left;
-          width: 33.3vw;
+          width: 32vw;
           padding: 0.3rem;
           text-align: center;
-          height: 33.3vw;
+          height: 32vw;
           box-sizing: border-box;
           .item{
             width: 100%;
@@ -2644,7 +3170,6 @@
     padding-bottom: 10rem;
     padding-left:1rem;
     padding-right:1rem;
-    text-align:justify;
     .receive{
       width: 45%;
       margin-right: 1.5rem;
@@ -2660,7 +3185,6 @@
     padding-bottom: 6rem;
     padding-left:1rem;
     padding-right:1rem;
-    text-align:justify;
     .receive{
       width: 45%;
       margin-right: 1.5rem;
@@ -2739,7 +3263,8 @@
     }
   }
   .add_blackOrder{
-    margin-top: 4rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     width: 50%;
   }
   .pic_box_bg{
@@ -2781,5 +3306,54 @@
     text-align: left;
     padding: 0.4rem 0.8rem;
     color:#6f7176;
+  }
+  .evidemce{
+    background: #ffffff;
+    padding: 0.4rem 0.4rem;
+    .title_name{
+      text-align: left;
+      color: #6f7176;
+    }
+    .imgs_box{
+      overflow: hidden;
+      .img_show_box{
+        overflow: hidden;
+        text-align: left;
+        float: left;
+        .info{
+          color: rgba(111, 113, 118, 1);
+          padding-left: 0.4rem;
+        }
+        .item_fun{
+          float: left;
+          width: 32vw;
+          padding: 0.3rem;
+          text-align: center;
+          height: 32vw;
+          box-sizing: border-box;
+          .item{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border: 1px dotted #ccc;
+            box-sizing: border-box;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 0.3rem;
+            .close_icon{
+              display: block;
+              width: 1.8rem;
+              background: url("../../assets/img/close_photo.png") no-repeat center center/1.2rem 1.2rem;
+              position: absolute;
+              top: 0.5rem;
+              right: 0.2rem;
+            }
+            img{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
   }
 </style>

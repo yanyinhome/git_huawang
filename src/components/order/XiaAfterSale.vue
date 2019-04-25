@@ -36,7 +36,7 @@
               <div class="head">
                 <p><span class="order_num">订单编号：{{item.or_number}}</span><span class="price">￥{{item.or_flower_total}}</span></p>
               </div>
-              <div class="body" @click="gorefunddetail()">
+              <div class="body" @click="gorefunddetail(item.id)">
                 <div class="left">
                   <div class="fonts">
                     收
@@ -52,7 +52,7 @@
                   <p class="time">配送完成时间:{{item.songda_time}}</p>
                 </div>
               </div>
-              <div class="result_img agree" @click="gorefunddetail()">&nbsp;</div>
+              <div class="result_img agree" @click="gorefunddetail(item.id)">&nbsp;</div>
             </template>
             <template v-if="item.state==2">
               <div class="head">
@@ -80,7 +80,7 @@
               <div class="head">
                 <p><span class="order_num">订单编号：{{item.or_number}}</span><span class="price">￥{{item.or_flower_total}}</span></p>
               </div>
-              <div class="body" @click="gorefunddetail()">
+              <div class="body" @click="gorefunddetail(item.id)">
                 <div class="left">
                   <div class="fonts">
                     收

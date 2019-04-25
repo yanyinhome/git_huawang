@@ -3,16 +3,11 @@
     <ReturnHead :head_name="head_name"></ReturnHead>
     <div class="account_box">
       <p class="account_title">账户余额</p>
-<<<<<<< HEAD
       <p class="account_number">{{BankDate.money}}</p>
-=======
-      <p class="account_number">{{userInfo.account}}</p>
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     </div>
     <div class="rechange_box">
       <p>提现金额</p>
       <div class="input_box">
-<<<<<<< HEAD
         <span>￥</span><input type="text" v-model="submitDate.money" :placeholder="'可转出到卡'+BankDate.kanmoney">
       </div>
     </div>
@@ -36,22 +31,6 @@
         </div>
       </div>
     </div>
-=======
-        <span>￥</span><input type="text" v-model="GetCash.number" placeholder="可转出到卡500.00">
-      </div>
-    </div>
-    <div class="bank_change_box">
-      <img slot="icon" src="" width="auto" height="100%">
-      <span class="title">{{BankMessage.name}}</span>
-      <span class="go"><i class="fa fa-angle-right fa-lg"></i></span>
-    </div>
-    <div class="password_box">
-      <span>安全密码</span><input type="password" placeholder="请输入安全密码">
-    </div>
-    <mt-button>
-      确定提现
-    </mt-button>
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
   </div>
 </template>
 
@@ -61,7 +40,6 @@
     name: 'GetCash',
     data(){
       return{
-<<<<<<< HEAD
         radio_box_state:false,
         head_name:'提现',
         typeDate:{},
@@ -70,20 +48,10 @@
           money:"",
           type:"2",
           saltword:""
-=======
-        head_name:'提现到卡',
-        GetCash:{
-          type:"1",
-          number:""
-        },
-        BankMessage:{
-          name:'工商银行',
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
         }
       }
     },
     computed:{
-<<<<<<< HEAD
       ...mapState(['userInfo']),
       bankmessage(){
         let key=this.submitDate.type;
@@ -147,9 +115,6 @@
     },
     created () {
       this.getTypeMessage();
-=======
-      ...mapState(['userInfo'])
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     }
   }
 </script>
@@ -159,7 +124,6 @@
     font-size: 0.91rem;
     text-align: left;
     font-weight: 600;
-<<<<<<< HEAD
     color: #6F7176;
   }
   .account_box{
@@ -169,42 +133,27 @@
     .account_title{
       padding: 1rem 0;
     }
-=======
-  }
-  .account_box{
-    padding: 0 15px;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     .account_number{
       font-size: 2rem;
       color: rgba(250, 103, 52, 1);
       margin-top: 0;
-<<<<<<< HEAD
       padding-bottom: 1rem;
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     }
   }
   .rechange_box{
     padding: 0 15px;
-<<<<<<< HEAD
     border-bottom: 8px solid #F2F3F5;
     p{
       color: #000000;
       padding:1rem 0;
     }
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     .input_box{
       height: 3rem;
       line-height: 3rem;
       text-align: left;
-<<<<<<< HEAD
       margin-bottom: 1rem;
       padding-bottom: 0.5rem;
       border-bottom: 1px solid #DFDFE5;
-=======
-      margin-bottom: 3rem;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       span{
         height: 3rem;
         line-height: 3rem;
@@ -224,20 +173,11 @@
     }
   }
   .bank_change_box{
-<<<<<<< HEAD
     border-bottom: 8px solid #F2F3F5;
     padding: 0.5rem 1rem;
     text-align: left;
     height: 2rem;
     line-height: 2rem;
-=======
-    padding: 0 15px;
-    text-align: left;
-    margin: 1.4rem 0;
-    height: 2rem;
-    line-height: 2rem;
-    box-sizing: border-box;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     .title{
       font-weight: bold;
       display: inline-block;
@@ -250,20 +190,13 @@
     }
   }
   .password_box{
-<<<<<<< HEAD
-=======
-    margin-bottom: 4rem;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     height: 3rem;
     line-height: 3rem;
     color: rgba(0, 0, 0, 1);
     text-align: left;
     font-size: 1rem;
     span{
-<<<<<<< HEAD
       display: inline-block;
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       font-weight: 600;
       padding: 0 15px;
     }
@@ -273,7 +206,6 @@
       border: none;
     }
   }
-<<<<<<< HEAD
   .btn_box{
     background: #F2F3F5;
     padding-top: 3rem;
@@ -351,14 +283,5 @@
         border-bottom: none;
       }
     }
-=======
-  .mint-button{
-    background:rgba(250, 103, 52, 1);
-    color: #fff;
-    font-size: 1rem;
-    width: 100%;
-    border-radius:1.3rem ;
-    height: 2.6rem;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
   }
 </style>

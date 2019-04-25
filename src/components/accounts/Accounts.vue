@@ -1,7 +1,6 @@
 <template>
   <div>
     <ReturnHead head_name="账户设置"></ReturnHead>
-<<<<<<< HEAD
     <div class="head_list_box">
       <div class="list_box" @click="show()">
         <mt-header class="highter" title="">
@@ -81,13 +80,10 @@
         </div>
       </div>
     </div>
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
   import {mapState,mapActions} from "vuex"
   import axios from  'axios'
   export default {
@@ -276,13 +272,4 @@
     }
   }
 }
-=======
-  export default {
-    name: 'Accounts'
-  }
-</script>
-
-<style scoped>
-
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
 </style>

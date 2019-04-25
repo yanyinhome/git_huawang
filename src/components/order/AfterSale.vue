@@ -105,7 +105,7 @@
                 </div>
               </div>
             </template>
-            <template v-if="item.state==16"  >
+            <template v-if="item.status==16"  >
               <div class="head">
                 <p><span class="order_num">订单编号：{{item.or_number}}</span><span class="price">￥{{item.or_flower_total}}</span></p>
               </div>
@@ -127,7 +127,7 @@
               </div>
               <div class="result_img agree" @click="gofefund_detail(item.id)">&nbsp;</div>
             </template>
-            <template v-if="item.state==17">
+            <template v-if="item.status==17">
               <div class="head">
                 <p><span class="order_num">订单编号：{{item.or_number}}</span><span class="price">￥{{item.or_flower_total}}</span></p>
               </div>

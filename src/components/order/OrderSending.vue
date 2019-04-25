@@ -33,7 +33,7 @@
               <div class="btn">
                 <mt-button v-bind:class="btnClass.receive" @click="todetail(item.id)">完成配送</mt-button>
               </div>
-              <div class="btn">
+              <div class="btn" style="display: none">
                 <mt-button v-bind:class="btnClass.cancle" @click="quxiao(item.id)">取消订单</mt-button>
               </div>
             </div>
@@ -270,9 +270,12 @@
             box-shadow: none;
           }
         }
-        .btn:first-child{
-          border-right: 1px solid rgba(223, 223, 229, 1);
+        .btn_faile{
+          color: red;
         }
+       /* .btn:first-child{
+          border-right: 1px solid rgba(223, 223, 229, 1);
+        }*/
       }
     }
   }

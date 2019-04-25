@@ -2,12 +2,14 @@
   <div>
       <div class="head_box">
         <h3><span @click="return_icon" class="return">&nbsp;</span>找花店</h3>
-        <div class="search" @click="search"><span class="search_icon">&nbsp;</span><input type="text" placeholder="请输入搜索内容" v-model="searchData.keyword"></div>
+        <div class="search" @click="search"><span class="search_icon">&nbsp;</span><input type="text" placeholder="请输入QQ、花店名称、手机号" v-model="searchData.keyword"></div>
       </div>
       <div class="address">
-        <AddressChoice @addressToParent="getAddress" class="doble_border"></AddressChoice>
+        <AddressChoice @addressToParent="getAddress" :state="5" class="doble_border"></AddressChoice>
       </div>
+    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
       <Recommendation :shop-arry="shopLists"></Recommendation>
+    </mt-loadmore>
   </div>
 </template>
 
@@ -18,8 +20,11 @@
     name: 'FindFlower',
     data(){
       return{
-        page:1,
-        pages:1,
+        allLoaded:false,
+        shopListsdata:{
+          page:"1",
+          pages:"1"
+        },
         shopLists:[],
         searchData:{
           keyword:"",
@@ -33,12 +38,58 @@
       ...mapState(['userInfo'])
     },
     methods:{
+      // 上拉加载
+      loadBottom() {
+        // // 加载更多数据
+        if(this.pageDate.page==this.pageDate.pages){
+          this.$toast("已到最后一页")
+          this.$refs.loadmore.onBottomLoaded();
+        }else {
+          const _this=this;
+          let datalist=this.shopLists;
+          this.shopLists.page++;
+          this.$http({method:"post",url:"/api/flower/serch_flower",data:Object.assign({},{token:this.userInfo.token},this.searchData,{page:this.shopLists.page})})
+            .then(
+              res=>{
+                if(res.data.code==200){
+                  this.shopListsdata.pages=res.data.data.pages;
+                }else {
+                  if(res.data.code==205){
+                    this.shopLists=[]
+                  }
+                }
+              }
+            ).then(
+            function () {
+              _this.shopLists=_this.shopLists.concat(datalist);
+              _this.$refs.loadmore.onBottomLoaded();
+            }
+          )
+        }
+      },
+      //下拉刷新
+      loadTop() {
+        this.shopLists.page=1;
+        this.$http({method:"post",url:"/api/flower/serch_flower",data:Object.assign({},{token:this.userInfo.token},{page:1})})
+          .then(
+            res=>{
+              if(res.data.code==200){
+                this.shopLists=res.data.data.list
+                this.shopListsdata.pages=res.data.data.pages;
+                this.$refs.loadmore.onTopLoaded()
+              }else {
+                this.$toast(res.data.msg)
+                this.$refs.loadmore.onTopLoaded()
+              }
+            }
+          )
+        // 加载更多数据
+      },
       return_icon(){
         this.$router.back(-1);
       },
-      search(page){
-        console.log(Object.assign({},{token:this.userInfo.token},this.searchData))
-        this.$http({method:"post",url:"/api/flower/serch_flower",data:Object.assign({},{token:this.userInfo.token,page:this.page},this.searchData)})
+      search(page="1"){
+        this.$http({method:"post",url:"/api/flower/serch_flower",data:Object.assign({},{token:this.userInfo.token},this.searchData,{page:page})})
           .then(
             res=>{
               console.log(res)
@@ -47,7 +98,7 @@
                   this.shopLists=[]
                 }else {
                   this.shopLists=res.data.data.list
-                  this.pages=res.data.data.pages;
+                  this.shopListsdata.pages=res.data.data.pages;
                 }
               }else {
                 this.shopLists=[]
@@ -70,6 +121,7 @@
       this.$http({method:"post",url:"/api/flower/serch_flower",data:{token:this.userInfo.token,province:this.userInfo.province,city:this.userInfo.city}})
         .then(
           res=>{
+            console.log('find',res)
             if(res.data.code==200){
               this.shopLists=res.data.data.list
             }else {

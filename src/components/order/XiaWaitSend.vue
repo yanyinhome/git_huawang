@@ -115,6 +115,11 @@
                   <p class="time">送达时间：{{item.or_delivery_time}}</p>
                 </div>
               </div>
+              <div class="btn_item_box">
+                <div class="onebtn">
+                  <mt-button v-bind:class="btnClass.cancle" @click="asktuikuan(item.id)">申请退款</mt-button>
+                </div>
+              </div>
               <!--<div class="btn_item_box">
                 <div class="onebtn">
                   <mt-button v-bind:class="btnClass.cancle" @click="cancle(item.id)">取消订单</mt-button>
@@ -321,6 +326,10 @@
       },
       go(path,id){
         this.$router.push({path:path,query:{id:id,type:2}})
+      },
+      //跳转到退款
+      asktuikuan(id){
+        this.$router.push({path:"/applyrefund",query:{id:id,type:"2"}})
       },
       //立即加价弹窗
       alert_Addprice(id,nowprice){

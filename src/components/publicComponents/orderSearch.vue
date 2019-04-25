@@ -13,6 +13,7 @@
         <div class="input_item"><input type="text" v-model="SearchData.or_shou_phone" placeholder="请输入收花人电话"></div>
         <div class="input_item"><input type="text" v-model="SearchData.or_fl_username" placeholder="请输入接单人用户名"></div>
         <div class="input_item"><input type="text" v-model="SearchData.or_delivery_time" placeholder="请输入送达时间"></div>
+        <div class="input_item"><input type="text" v-model="SearchData.or_number" placeholder="请输入订单号"></div>
         <div class="input_item" style="width: 100%">当前搜索地址：{{addressShow.province}}{{addressShow.city}}{{addressShow.area}}<span class="clear" @click="clearaddress()">清空</span></div>
       </div>
       <div class="address_box" v-if="addressBox.state">
@@ -139,7 +140,8 @@
           create_time2:"",
           or_shou_province:"",
           or_shou_city:"",
-          or_shou_area:""
+          or_shou_area:"",
+          or_number:""
         }
       }
     },

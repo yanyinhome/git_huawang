@@ -34,7 +34,7 @@
                 <mt-button v-bind:class="btnClass.receive" @click="querenshouhuo(item.id)">确定收货</mt-button>
               </div>
               <div class="btn">
-                <mt-button v-bind:class="btnClass.cancle" @click="asktuikuan(item.id)">申请退款</mt-button>
+                <mt-button v-bind:class="btnClass.cancle"  @click="asktuikuan(item.id)">申请退款</mt-button>
               </div>
             </div>
           </div>

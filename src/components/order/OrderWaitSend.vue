@@ -37,7 +37,7 @@
                 <div class="btn">
                   <mt-button class="noborder" v-bind:class="btnClass.receive" @click="beginSend(item.id)">开始配送</mt-button>
                 </div>
-                <div class="btn">
+                <div class="btn" style="display: none">
                   <mt-button  class="noborder" v-bind:class="btnClass.cancle" @click="cancle(item.id)">取消订单</mt-button>
                 </div>
               </div>
@@ -347,9 +347,7 @@
           border: none;
         }
       }
-      .btn:first-child{
-        border-right: 1px solid rgba(223, 223, 229, 1);
-      }
+
     }
   }
 }

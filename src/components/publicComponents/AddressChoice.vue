@@ -3,20 +3,21 @@
     <div class="selct_box">
       <label for="province">省份</label>
       <select v-model="addressSubmit.province" @change="getC()" id="province" v-show="true">
+        <option value="0">请选择一项</option>
         <option :value="key" v-for="(value,key) in addressDate.province">{{value}}</option>
       </select>
     </div>
     <div class="selct_box">
       <label for="city">城市</label>
       <select v-model="addressSubmit.city" @change="getA()" id="city" v-show="true">
-        <option value="0" disabled>请选择一项</option>
+        <option value="0">请选择一项</option>
         <option :value="key" v-for="(value,key) in addressDate.city">{{value}}</option>
       </select>
     </div>
     <div class="selct_box">
       <label for="area">地区</label>
       <select v-model="addressSubmit.area" id="area" v-show="true">
-        <option value="0" disabled>请选择一项</option>
+        <option value="0" >请选择一项</option>
         <option :value="key" v-for="(value,key) in addressDate.area">{{value}}</option>
       </select>
     </div>
@@ -219,6 +220,14 @@ export default {
               }
             }
           )
+        break;
+      case 5:
+        this.addressSubmit.province="0";
+        this.addressSubmit.city="0";
+        this.addressSubmit.area="0";
+        this.getProvince();
+        this.getCity(this.addressSubmit.province);
+        this.getArea(this.addressSubmit.city);
         break;
       default:
         this.$http({method:'post',url:"/api/user/upuserview",data:{token:this.userInfo.token,username:this.userInfo.username}})

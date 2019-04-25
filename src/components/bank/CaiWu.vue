@@ -8,7 +8,7 @@
     <div class="list_box">
       <div class="item" v-for="(val,key,index) in historyList">
         <h3 @click="change(index,$event)">{{key}} <span class="icon down">&nbsp;</span></h3>
-        <div :id="index">
+        <div :id="index" style="display: none">
           <div v-for="item in val" class="list_item">
             <div class="up">
               <div class="content">{{item.type}}</div>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
   import {mapState} from  "vuex"
   export default {
     name: 'CaiWu',
@@ -60,13 +59,13 @@
       change(id,e){
         if(document.getElementById(id).style.display=='none'){
           document.getElementById(id).style.display='block'
-          e.currentTarget.firstElementChild.classList.remove("up")
-          e.currentTarget.firstElementChild.classList.add("down")
+          e.currentTarget.firstElementChild.classList.remove("down")
+          e.currentTarget.firstElementChild.classList.add("up")
           return
         }
         document.getElementById(id).style.display='none'
-        e.currentTarget.firstElementChild.classList.remove("down")
-        e.currentTarget.firstElementChild.classList.add("up")
+        e.currentTarget.firstElementChild.classList.remove("up")
+        e.currentTarget.firstElementChild.classList.add("down")
         /*if(e.target.localName=='span'){
           e.target.classList.remove('up')
           e.target.classList.add('down')
@@ -109,6 +108,7 @@
       font-size: 0.95rem;
       color: #000000;
       padding: 0.6rem 1rem;
+      margin-bottom: 5px;
       .icon{
         display: inline-block;
         width: 2rem;
@@ -160,13 +160,4 @@
     }
   }
 }
-=======
-  export default {
-    name: 'CaiWu'
-  }
-</script>
-
-<style scoped>
-
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
 </style>

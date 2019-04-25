@@ -6,6 +6,7 @@
         </div>
         <div class="message_box">
           <span class="orders_info"><span class="num_color">{{item.fl_order_num}}</span>&nbsp;总接单</span>
+          <span class="orders_info bottom"><span class="num_color">{{item.ordercount}}</span>&nbsp;近三月</span>
           <p class="head">{{item.fl_name}}</p>
           <p class="address">地址：{{item.dizhi}}</p>
           <span class="phone_box">{{item.fl_phone}}</span>
@@ -86,6 +87,9 @@
           .num_color{
             color: #FA6734;
           }
+        }
+        .bottom{
+          top:calc(10px + 0.85rem)
         }
         p{
           margin: 5px 0px;

@@ -268,6 +268,11 @@
       color: rgba(111, 113, 118, 1);
       margin-bottom: 1rem;
     }
+    @media(max-width: 360px) {
+      .nav_item{
+        font-size: 0.9rem;
+      }
+    }
     span{
       padding-bottom: 5px;
     }

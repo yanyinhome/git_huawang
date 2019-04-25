@@ -134,11 +134,11 @@
     padding: 15px 0;
     .left{
       float: left;
-      width: 45%;
+      width: 35%;
       text-align: left;
     }
     .right{
-      width: 55%;
+      width: 65%;
       float:right;
       text-align: right;
       input{

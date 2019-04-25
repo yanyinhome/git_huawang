@@ -2,18 +2,18 @@
   <div>
     <ReturnHead head_name="填写订单"></ReturnHead>
     <div class="order_mes">
-      <div class="send_order_mes">
-        <OrderTitle title="订花人信息"></OrderTitle>
-        <div class="send_input">
-          <input type="text" class="name" placeholder=" 输入姓名" v-model="WriterOrderData.or_buy_name">
-          <input type="text" class="phone" placeholder=" 输入11位手机号码" v-model="WriterOrderData.or_buy_phone">
-        </div>
-      </div>
       <div class="get_order_mes">
         <OrderTitle title="收花人信息"></OrderTitle>
         <div class="send_input">
           <input type="text" class="name" placeholder=" 输入姓名" v-model="WriterOrderData.or_shou_name">
           <input type="text" class="phone" placeholder=" 输入11位手机号码" v-model="WriterOrderData.or_shou_phone">
+        </div>
+      </div>
+      <div class="send_order_mes">
+        <OrderTitle :must=false title="订花人信息"></OrderTitle>
+        <div class="send_input">
+          <input type="text" class="name" placeholder=" 输入姓名" v-model="WriterOrderData.or_buy_name">
+          <input type="text" class="phone" placeholder=" 输入11位手机号码" v-model="WriterOrderData.or_buy_phone">
         </div>
       </div>
       <div class="address">
@@ -54,6 +54,7 @@
         </div>
         <div class="time_box">
           <mt-datetime-picker
+              class="data_pick"
               ref="picker2"
               v-model="pickerVisible"
               :startDate="DataStart"
@@ -222,7 +223,7 @@
         shiduan:{
           value:"08:00~10:00",
           //时段配送选择数据
-          data:['08:00-10:00', '10:00-12:00','12:00-14:00', '14:00-16:00', '16:00-18:00','18:00-20:00','20:00-22:00'],
+          data:['08:00-10:00', '10:00-12:00','12:00-14:00', '14:00-16:00', '16:00-18:00','18:00-20:00','20:00-22:00',"22:00-24:00",'08:00-12:00',"12:00-18:00","18:00-22:00"],
         },
         WriterOrderData:{
           card:"",
@@ -269,7 +270,7 @@
         slots: [
           {
             flex: 1,
-            values: ['8', '9', '10', '11', '12', '13','13','14','15','16','17','18','19','20','21','22'],
+            values: ['1','2','3','4','5','6','7','8', '9', '10', '11', '12', '13','13','14','15','16','17','18','19','20','21','22',"23","24"],
             className: 'slot1',
             textAlign: 'center'
           }, {
@@ -381,7 +382,7 @@
       },
       //搜索
       search(){
-        this.$http({method:"post",url:"/api/flower/serch_flower",data:Object.assign({},{token:this.userInfo.token},{province:this.WriterOrderData.or_shou_province,city:this.WriterOrderData.or_shou_city,area:this.WriterOrderData.or_shou_area},{keyword:this.keyword},{page:this.pageDate.page})})
+        this.$http({method:"post",url:"/api/flower/serch_flower",data:Object.assign({},{token:this.userInfo.token},{province:this.WriterOrderData.or_shou_province,city:this.WriterOrderData.or_shou_city},{keyword:this.keyword},{page:this.pageDate.page})})
           .then(
             res=>{
               console.log(res)
@@ -463,30 +464,33 @@
       //提交订单
       submit(){
         this.WriterOrderData.or_flower_img=this.imgIdArray.join(',')
-        console.log(this.WriterOrderData)
-        if(!this.WriterOrderData.or_buy_name){
-          this.$toast('请输入订花人姓名')
+        if(!this.WriterOrderData.or_shou_name){
+          this.$toast('请选择收货人姓名')
           return;
         }
-        if(!this.WriterOrderData.or_buy_phone){
-          this.$toast('请输入订花人电话')
+        if(this.WriterOrderData.or_shou_name.length<2){
+          this.$toast("收货人姓名太短")
+          return;
+        }
+        if(!this.WriterOrderData.or_shou_phone){
+          this.$toast('请输入收货人电话')
           return;
         }else if(
-          !/^(13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]{8}$/.test(this.WriterOrderData.or_buy_phone)
+          /^(13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]{8}$/.test(this.WriterOrderData.or_buy_phone)
         ){
-          this.$toast('请输入正确的电话号码!')
+          this.$toast('请输入正确的收货人电话!')
           return
         }
         if(!this.WriterOrderData.or_delivery_time){
           this.$toast('请输入送货时间')
           return;
         }
-        if(!this.WriterOrderData.or_flower_info){
-          this.$toast('请输入花卉描述')
-          return;
-        }
         if(!this.WriterOrderData.or_flower_img){
           this.$toast('请上传花卉图片')
+          return;
+        }
+        if(!this.WriterOrderData.or_flower_info){
+          this.$toast('请输入花卉描述')
           return;
         }
         if(!this.WriterOrderData.or_flower_num){
@@ -509,23 +513,6 @@
           this.$toast('请选择城市')
           return;
         }
-        if(!this.WriterOrderData.or_shou_name){
-          this.$toast('请选择收货人姓名')
-          return;
-        }
-        if(this.WriterOrderData.or_shou_name.length<2){
-          this.$toast("收货人姓名太短")
-          return;
-        }
-        if(!this.WriterOrderData.or_shou_phone){
-          this.$toast('请输入收货人电话')
-          return;
-        }else if(
-          !/^(13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]{8}$/.test(this.WriterOrderData.or_buy_phone)
-        ){
-          this.$toast('请输入正确的收货人电话!')
-          return
-        }
         if(!this.WriterOrderData.or_shou_province){
           this.$toast('请选择省份')
           return;
@@ -535,6 +522,7 @@
           this.$http({method:'post',url:"/api/index/place_order",data:Object.assign({},{token:this.userInfo.token},this.WriterOrderData)})
             .then(
               res=>{
+                console.log('pay',res.data)
                 if(res.data.code==200){
                   console.log(res,'xiadan')
                   this.openPay()
@@ -586,6 +574,7 @@
               res=>{
                 if(res.data.code==200){
                   this.openPay()
+                  this.pay.id=res.data.data;
                  /* this.WriterOrderData={
                     or_buy_name:"",
                     or_buy_phone:"",
@@ -1249,13 +1238,13 @@
   box-sizing: border-box;
   top: 0;
   left: 0;
+  z-index: 99;
   .box{
     border-radius: 8px;
     text-align: left;
     background: #fff;
-    margin: 50% 1rem 0;
+    margin: 15% 1rem 0;
     padding: 1rem;
-    z-index: 10000;
     p{
       color: #000000;
       padding: 0.5rem 0;
@@ -1425,6 +1414,15 @@
       color: #ffffff;
       border-radius: 18px;
       font-size: 1rem;
+    }
+  }
+}
+.data_pick{
+  /deep/ .picker{
+    .picker-items{
+      .picker-slot:first-child{
+        display: none;
+      }
     }
   }
 }

@@ -112,7 +112,7 @@
       this.inputData={
         alipay:alipay,
         alipay_name:alipay_name,
-        alipay_img:""
+        alipay_img:alipay_img
       }
       this.alipay_img=alipay_img;
     }

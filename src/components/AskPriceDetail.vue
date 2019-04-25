@@ -63,11 +63,7 @@
         defaulturl:require('../assets/img/shop_card.png'),
         answerMessage:"",
         quesion:{
-          content:"我想问一下，蓝色妖姬现在每朵是多少钱啊，全国的价格都一样吗？",
-          username:"我***名",
-          create_time:"2019-01-29 09:30",
-          answer:'389',
-          headimg:""},
+          },
         answerArray:[
         ]
       }

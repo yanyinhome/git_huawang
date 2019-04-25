@@ -42,6 +42,16 @@
             </div>
             <div class="item_box">
               <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
                 送达时间:
               </div>
               <div class="right">
@@ -169,6 +179,16 @@
            </div>
            <div class="item_box">
              <div class="left">
+               支付时间:
+             </div>
+             <div class="right">
+               <p>
+                 {{orderDetail.pay_time}}
+               </p>
+             </div>
+           </div>
+           <div class="item_box">
+             <div class="left">
                送达时间:
              </div>
              <div class="right">
@@ -190,16 +210,16 @@
                </p>
              </div>
            </div>
-           <div class="item_box">
-             <div class="left">
-               接单花店
-             </div>
-             <div class="right">
-               <p>
-                 {{orderDetail.fl_name}}
-               </p>
-             </div>
-           </div>
+           <!--<div class="item_box">-->
+             <!--<div class="left">-->
+               <!--接单花店-->
+             <!--</div>-->
+             <!--<div class="right">-->
+               <!--<p>-->
+                 <!--{{orderDetail.fl_name}}-->
+               <!--</p>-->
+             <!--</div>-->
+           <!--</div>-->
            <div class="item_box">
              <div class="left">
                配送完成:
@@ -245,6 +265,24 @@
              </div>
            </div>
          </div>
+         <div class="evidemce">
+           <p class="title_name">
+             送达凭证：
+           </p>
+           <div class="imgs_box">
+             <div class="img_show_box" v-if="orderDetail.songda_images.length">
+               <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                 <div class="item">
+                   <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                   <img  :src="item" alt="">
+                 </div>
+               </div>
+             </div>
+             <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+               <p class="info">未有图片上传！</p>
+             </div>
+           </div>
+         </div>
          <div class="apply_time">
            申请时间：{{refundDetail.create_time}}
          </div>
@@ -252,8 +290,8 @@
        </div>
        <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
        <div class="btnbox">
-         <div class="btn left"><span>联系买家</span></div>
-         <div class="btn"><span>在线联系</span></div>
+         <div class="btn left"><span><a :href="'tel:'+orderDetail.or_shou_phone">联系买家</a></span></div>
+         <div class="btn"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
        </div>
      </template>
       <template v-if="orderDetail.status==14||orderDetail.status==15">
@@ -291,6 +329,16 @@
               <div class="right">
                 <p>
                   {{orderDetail.create_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
                 </p>
               </div>
             </div>
@@ -335,6 +383,36 @@
           <div class="reason_box">
             <div class="reason">
               <div class="left">
+                拒绝原因:
+              </div>
+              <div class="right">
+                <p>
+                  {{refundDetail.jujue_content}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="evidemce">
+            <p class="title_name">
+              拒绝凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="refundDetail.img2.length">
+                <div class="item_fun" v-for="(item,index) in refundDetail.img2" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!refundDetail.img2.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
+          <div class="reason_box">
+            <div class="reason">
+              <div class="left">
                 退款原因:
               </div>
               <div class="right">
@@ -362,6 +440,24 @@
               </div>
             </div>
           </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderDetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
           <div class="apply_time">
             申请时间：{{refundDetail.create_time}}
           </div>
@@ -369,8 +465,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn left"><span><a :href="'tel:'+refundDetail.or_shou_phone">联系买家</a></span></div>
-          <div class="btn"><span>在线联系</span></div>
+          <div class="btn left"><span><a :href="'tel:'+orderDetail.or_shou_phone">联系买家</a></span></div>
+          <div class="btn"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
         </div>
       </template>
       <template v-if="orderDetail.status==16">
@@ -408,6 +504,16 @@
               <div class="right">
                 <p>
                   {{orderDetail.create_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
                 </p>
               </div>
             </div>
@@ -460,13 +566,43 @@
               </div>
               <div class="right">
                 <p>
-                  {{orderDetail.plat_content}}
+                  {{refundDetail.plat_content}}
                 </p>
               </div>
             </div>
             <div class="price">￥{{orderDetail.or_flower_total}}</div>
             <div class="bg_icon after_sale">
               已退款
+            </div>
+          </div>
+          <div class="reason_box">
+            <div class="reason">
+              <div class="left">
+                拒绝原因:
+              </div>
+              <div class="right">
+                <p>
+                  {{refundDetail.jujue_content}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="evidemce">
+            <p class="title_name">
+              拒绝凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="refundDetail.img2.length">
+                <div class="item_fun" v-for="(item,index) in refundDetail.img2" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!refundDetail.img2.length">
+                <p class="info">未有图片上传！</p>
+              </div>
             </div>
           </div>
           <div class="reason_box">
@@ -499,6 +635,24 @@
               </div>
             </div>
           </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderDetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
           <div class="apply_time">
             申请时间：{{refundDetail.create_time}}
           </div>
@@ -506,8 +660,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn small left"><span><a :href="'tel:'+refundDetail.or_shou_phone">联系买家</a></span></div>
-          <div class="btn small"><span>在线联系</span></div>
+          <div class="btn small left"><span><a :href="'tel:'+orderDetail.or_shou_phone">联系买家</a></span></div>
+          <div class="btn small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
           <div class="btn small"><span>平台退款</span></div>
         </div>
       </template>
@@ -551,6 +705,16 @@
             </div>
             <div class="item_box">
               <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
                 送达时间:
               </div>
               <div class="right">
@@ -572,16 +736,16 @@
                 </p>
               </div>
             </div>
-            <div class="item_box">
-              <div class="left">
-                接单花店
-              </div>
-              <div class="right">
-                <p>
-                  {{orderDetail.fl_name}}
-                </p>
-              </div>
-            </div>
+            <!--<div class="item_box">-->
+              <!--<div class="left">-->
+                <!--接单花店-->
+              <!--</div>-->
+              <!--<div class="right">-->
+                <!--<p>-->
+                  <!--{{orderDetail.fl_name}}-->
+                <!--</p>-->
+              <!--</div>-->
+            <!--</div>-->
             <div class="item_box">
               <div class="left">
                 配送完成:
@@ -598,13 +762,43 @@
               </div>
               <div class="right">
                 <p>
-                  {{orderDetail.plat_content}}
+                  {{refundDetail.plat_content}}
                 </p>
               </div>
             </div>
             <div class="price">￥{{orderDetail.or_flower_total}}</div>
             <div class="bg_icon after_sale">
               已拒绝
+            </div>
+          </div>
+          <div class="reason_box">
+            <div class="reason">
+              <div class="left">
+                拒绝原因:
+              </div>
+              <div class="right">
+                <p>
+                  {{refundDetail.jujue_content}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="evidemce">
+            <p class="title_name">
+              拒绝凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="refundDetail.img2.length">
+                <div class="item_fun" v-for="(item,index) in refundDetail.img2" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!refundDetail.img2.length">
+                <p class="info">未有图片上传！</p>
+              </div>
             </div>
           </div>
           <div class="reason_box">
@@ -637,6 +831,24 @@
               </div>
             </div>
           </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderDetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
           <div class="apply_time">
             申请时间：{{refundDetail.create_time}}
           </div>
@@ -644,8 +856,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn left small"><span><a :href="'tel:'+refundDetail.or_shou_phone">联系买家</a></span></div>
-          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+refundDetail.flows.fl_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
+          <div class="btn left small"><span><a :href="'tel:'+orderDetail.or_shou_phone">联系买家</a></span></div>
+          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
           <div class="btn small"><span>平台完成</span></div>
         </div>
       </template>
@@ -686,6 +898,16 @@
               <div class="right">
                 <p>
                   {{orderDetail.create_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
                 </p>
               </div>
             </div>
@@ -767,6 +989,24 @@
               </div>
             </div>
           </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderDetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
           <div class="apply_time">
             申请时间：{{refundDetail.create_time}}
           </div>
@@ -812,6 +1052,16 @@
               <div class="right">
                 <p>
                   {{orderDetail.create_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
                 </p>
               </div>
             </div>
@@ -900,8 +1150,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn left"><span>联系店铺</span></div>
-          <div class="btn"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
+          <div class="btn left"><span><a :href="'tel:'+orderDetail.fl_tel">联系店铺</a></span></div>
+          <div class="btn"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.fl_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
         </div>
       </template>
       <template v-if="orderDetail.status==14">
@@ -939,6 +1189,16 @@
               <div class="right">
                 <p>
                   {{orderDetail.create_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
                 </p>
               </div>
             </div>
@@ -993,6 +1253,36 @@
           <div class="reason_box">
             <div class="reason">
               <div class="left">
+                拒绝原因:
+              </div>
+              <div class="right">
+                <p>
+                  {{refundDetail.jujue_content}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="evidemce">
+            <p class="title_name">
+              拒绝凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="refundDetail.img2.length">
+                <div class="item_fun" v-for="(item,index) in refundDetail.img2" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!refundDetail.img2.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
+          <div class="reason_box">
+            <div class="reason">
+              <div class="left">
                 退款原因:
               </div>
               <div class="right">
@@ -1020,6 +1310,24 @@
               </div>
             </div>
           </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderDetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
           <div class="apply_time">
             申请时间：{{refundDetail.create_time}}
           </div>
@@ -1027,8 +1335,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn left small"><span>联系店铺</span></div>
-          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
+          <div class="btn left small"><span><a :href="'tel:'+orderDetail.fl_tel">联系店铺</a></span></div>
+          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.fl_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
           <div class="btn small" @click="helpPingTai"><span>平台介入</span></div>
         </div>
       </template>
@@ -1067,6 +1375,16 @@
               <div class="right">
                 <p>
                   {{orderDetail.create_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
                 </p>
               </div>
             </div>
@@ -1121,6 +1439,36 @@
           <div class="reason_box">
             <div class="reason">
               <div class="left">
+                拒绝原因:
+              </div>
+              <div class="right">
+                <p>
+                  {{refundDetail.jujue_content}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="evidemce">
+            <p class="title_name">
+              拒绝凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="refundDetail.img2.length">
+                <div class="item_fun" v-for="(item,index) in refundDetail.img2" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!refundDetail.img2.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
+          <div class="reason_box">
+            <div class="reason">
+              <div class="left">
                 退款原因:
               </div>
               <div class="right">
@@ -1148,6 +1496,24 @@
               </div>
             </div>
           </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderDetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
           <div class="apply_time">
             申请时间：{{refundDetail.create_time}}
           </div>
@@ -1155,8 +1521,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn left small"><span>联系店铺</span></div>
-          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
+          <div class="btn left small"><span><a :href="'tel:'+orderDetail.fl_tel">联系店铺</a></span></div>
+          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.fl_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
           <div class="btn small"><span>平台已介入</span></div>
         </div>
       </template>
@@ -1200,6 +1566,16 @@
             </div>
             <div class="item_box">
               <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
                 送达时间:
               </div>
               <div class="right">
@@ -1247,13 +1623,43 @@
               </div>
               <div class="right">
                 <p>
-                  {{orderDetail.plat_content}}
+                  {{refundDetail.plat_content}}
                 </p>
               </div>
             </div>
             <div class="price">￥{{orderDetail.or_flower_total}}</div>
             <div class="bg_icon after_sale">
               待处理
+            </div>
+          </div>
+          <div class="reason_box">
+            <div class="reason">
+              <div class="left">
+                拒绝原因:
+              </div>
+              <div class="right">
+                <p>
+                  {{refundDetail.jujue_content}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="evidemce">
+            <p class="title_name">
+              拒绝凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="refundDetail.img2.length">
+                <div class="item_fun" v-for="(item,index) in refundDetail.img2" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!refundDetail.img2.length">
+                <p class="info">未有图片上传！</p>
+              </div>
             </div>
           </div>
           <div class="reason_box">
@@ -1286,6 +1692,24 @@
               </div>
             </div>
           </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderDetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderDetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderDetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
+              </div>
+            </div>
+          </div>
           <div class="apply_time">
             申请时间：{{refundDetail.create_time}}
           </div>
@@ -1293,8 +1717,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn small left"><span>联系店铺</span></div>
-          <div class="btn small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
+          <div class="btn small left"><span><a :href="'tel:'+orderDetail.fl_tel">联系店铺</a></span></div>
+          <div class="btn small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.fl_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
           <div class="btn small"><span>平台退款</span></div>
         </div>
       </template>
@@ -1338,6 +1762,16 @@
             </div>
             <div class="item_box">
               <div class="left">
+                支付时间:
+              </div>
+              <div class="right">
+                <p>
+                  {{orderDetail.pay_time}}
+                </p>
+              </div>
+            </div>
+            <div class="item_box">
+              <div class="left">
                 送达时间:
               </div>
               <div class="right">
@@ -1385,7 +1819,7 @@
               </div>
               <div class="right">
                 <p>
-                  {{orderDetail.plat_content}}
+                  {{refundDetail.plat_content}}
                 </p>
               </div>
             </div>
@@ -1403,6 +1837,24 @@
                 <p>
                   {{refundDetail.content}}
                 </p>
+              </div>
+            </div>
+          </div>
+          <div class="evidemce">
+            <p class="title_name">
+              送达凭证：
+            </p>
+            <div class="imgs_box">
+              <div class="img_show_box" v-if="orderdetail.songda_images.length">
+                <div class="item_fun" v-for="(item,index) in orderdetail.songda_images" :key="index">
+                  <div class="item">
+                    <!--<span class="close_icon" @click="close(index)">&nbsp;</span>-->
+                    <img  :src="item" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="img_show_box" v-if="!orderdetail.songda_images.length">
+                <p class="info">未有图片上传！</p>
               </div>
             </div>
           </div>
@@ -1431,8 +1883,8 @@
         </div>
         <mt-button style="width: 50%;margin-bottom: 15px;" @click="add_black">加入黑名单</mt-button>
         <div class="btnbox">
-          <div class="btn left small"><span>联系店铺</span></div>
-          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.or_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
+          <div class="btn left small"><span><a :href="'tel:'+orderDetail.fl_tel">联系店铺</a></span></div>
+          <div class="btn left small"><span><a :href="'http://wpa.qq.com/msgrd?v=3&uin='+orderDetail.fl_qq+'&site=qq&menu=yes'">在线联系</a></span></div>
           <div class="btn small"><span>平台完成</span></div>
         </div>
       </template>

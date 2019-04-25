@@ -3,7 +3,6 @@
     <ReturnHead head_name="账户充值"></ReturnHead>
     <div class="account_box">
       <p class="account_title">账户余额</p>
-<<<<<<< HEAD
       <p class="account_number">{{userInfo.money}}</p>
     </div>
     <div class="rechange_box">
@@ -22,47 +21,20 @@
         立即充值
       </mt-button>
     </div>
-=======
-      <p class="account_number">{{userInfo.account}}</p>
-    </div>
-    <div class="rechange_box">
-      <p>充值金额</p>
-      <div class="input_box">
-        <span>￥</span><input type="text" v-model="ReChange.number" placeholder="请输入充值金额">
-      </div>
-    </div>
-    <div class="zf_box">
-      <label :class="{active:ReChange.type==1}" for="type1"><span class="ZFB">支付宝钱包支付</span></label><input @change="show" v-show="false" type="radio" id="type1" value="1" name="ZhiFU" v-model="ReChange.type">
-      <label :class="{active:ReChange.type==2}" for="type2"><span class="WX">微信钱包支付</span></label><input @change="show" v-show="false" type="radio" id="type2" value="2" name="ZhiFU" v-model="ReChange.type">
-    </div>
-    <mt-button>
-      立即充值
-    </mt-button>
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
   import {mapState,mapActions} from  'vuex'
-=======
-  import {mapState} from  'vuex'
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
   export default {
     name: 'ReChange',
     data(){
       return{
-<<<<<<< HEAD
         Result:"",
         ReChange:{
           pay_type:"1",
           money:"",
           type:2
-=======
-        ReChange:{
-          type:"1",
-          number:""
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
         }
       }
     },
@@ -70,7 +42,6 @@
       ...mapState(['userInfo'])
     },
     methods:{
-<<<<<<< HEAD
       ...mapActions(['setUserInfo','setOrderType']),
       //充值
       rechange(){
@@ -119,11 +90,6 @@
             }
           )
 
-=======
-      show(){
-        console.log(this.ReChange)
-      }
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     }
   }
 </script>
@@ -136,44 +102,31 @@
   }
   .account_box{
     padding: 0 15px;
-<<<<<<< HEAD
     border-bottom: 8px solid #F2F3F5;
     border-top: 8px solid #F2F3F5;
     .account_title{
       margin: 0.5rem 0;
       color: #6F7176;
     }
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     .account_number{
       font-size: 2rem;
       color: rgba(250, 103, 52, 1);
       margin-top: 0;
-<<<<<<< HEAD
       margin-bottom: 0.6rem;
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     }
   }
   .rechange_box{
     padding: 0 15px;
-<<<<<<< HEAD
     .title{
       margin: 0.5rem 0;
     }
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     .input_box{
       height: 3rem;
       line-height: 3rem;
       text-align: left;
-<<<<<<< HEAD
       margin-bottom: 2rem;
       border-bottom: 1px solid #DFDFE5;
       padding-bottom: 2px;
-=======
-      margin-bottom: 3rem;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       span{
         height: 3rem;
         line-height: 3rem;
@@ -205,27 +158,17 @@
     }
   }
   .zf_box{
-<<<<<<< HEAD
     padding: 1.5rem 15px 0;
     border-top: 8px solid #F2F3F5;
     label{
       display: inline-block;
       width: 45%;
-=======
-    padding: 0 15px;
-    label{
-      display: inline-block;
-      width: 48%;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       height: 3rem;
       box-sizing: border-box;
       border: 2px solid rgba(223, 223, 229, 1);
       border-radius: 8px;
       line-height: calc(3rem - 4px);
-<<<<<<< HEAD
       margin-right:0.3rem;
-=======
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
       span{
         padding-left: 1rem;
         display: block;
@@ -235,11 +178,7 @@
         font-size: 0.91rem;
         font-weight: 600;
       }
-<<<<<<< HEAD
       margin-bottom: 1.5rem;
-=======
-      margin-bottom: 4rem;
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
     }
     .ZFB{
       background: url("../../assets/img/zfb.png") no-repeat 0.7rem center/auto 40%;
@@ -253,7 +192,6 @@
       background: url("../../assets/img/zf_checked.png") no-repeat top right/auto 40%;
     }
   }
-<<<<<<< HEAD
   .btn_box{
     background: #F2F3F5;
     padding:2rem 0 16rem;
@@ -267,14 +205,4 @@
     }
   }
 
-=======
-  .mint-button{
-    background:rgba(250, 103, 52, 1);
-    color: #fff;
-    font-size: 1rem;
-    width: 100%;
-    border-radius:1.3rem ;
-    height: 2.6rem;
-  }
->>>>>>> 70fcb7d3231032b627f910c92869a8534e33646c
 </style>
